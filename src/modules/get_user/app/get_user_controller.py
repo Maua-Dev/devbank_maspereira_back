@@ -40,7 +40,7 @@ class GetUserController:
             viewmodel = GetUserViewmodel(user)
             
             response = OK(viewmodel.to_dict())
-            self.observability.log_controller_out(input=user.user_id)
+            self.observability.log_controller_out(input=user.current_balance)
             return response
 
         except NoItemsFound as err:

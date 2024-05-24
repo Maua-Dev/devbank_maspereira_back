@@ -1,19 +1,18 @@
 from src.modules.get_all_users.app.get_all_users_viewmodel import GetAllUsersViewmodel, UserViewmodel
 from src.shared.domain.entities.user import User
-from src.shared.domain.enums.state_enum import STATE
 
 
 class Test_GetAllUsersViewmodel:
     all_users_list = [
-        User(user_id=1,
+        User(current_balance=1.0,
              name="Lucas Duez",
-             email="deuzexmachina@gmail.com",
-             state=STATE.APPROVED),
+             agency="0000",
+             account="12345-6"),
 
-        User(user_id=2,
+        User(current_balance=2.0,
              name="Laura Blablachan",
-             email="laurinha@gmail.com",
-             state=STATE.APPROVED),
+             agency="0000",
+             account="12345-6")
     ]
 
     def test_get_all_users_viewmodel(self):
@@ -22,16 +21,16 @@ class Test_GetAllUsersViewmodel:
         expected = {
             "all_users": [
                 {
-                    'user_id': 1,
+                    'current_balance': 1.0,
                     'name': "Lucas Duez",
-                    'email': "deuzexmachina@gmail.com",
-                    'state': 'APPROVED',
+                    'agency': "0000",
+                    'account': '12345-6'
                 },
                 {
-                    'user_id': 2,
+                    'current_balance': 2.0,
                     'name': "Laura Blablachan",
-                    'email': "laurinha@gmail.com",
-                    'state': 'APPROVED',
+                    'agency': "0000",
+                    'account': '12345-6'
                 }
             ],
             "message": "all users has been retrieved"
@@ -43,22 +42,19 @@ class Test_GetAllUsersViewmodel:
 
     def test_user_viewmodel(self):
         viewmodel = UserViewmodel(
-            User(user_id=2,
+            User(current_balance=2.0,
                  name="Laura Blablachan",
-                 email="laurinha@gmail.com",
-                 state=STATE.APPROVED),
-)
+                 agency="0000",
+                 account="12345-6")
+        )
 
         response = viewmodel.to_dict()
 
         expected = {
-                    'user_id': 2,
+                    'current_balance': 2.0,
                     'name': "Laura Blablachan",
-                    'email': "laurinha@gmail.com",
-                    'state': 'APPROVED',
+                    'agency': "0000",
+                    'account': '12345-6'
         }
 
         assert response == expected
-
-
-    

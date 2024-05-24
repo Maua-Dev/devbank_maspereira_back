@@ -60,22 +60,22 @@ class Test_GetAllUsersPresenter:
         expected_body = {
             "all_users": [
                 {
-                    'user_id': 1,
+                    'current_balance': 1.0,
                     'name': "Bruno Soller",
-                    'email': "soller@soller.com",
-                    'state': 'APPROVED',
+                    'agency': "0000",
+                    'account': '12345-6',
                 },
                 {
-                    'user_id': 2,
+                    'current_balance': 2.0,
                     'name': "Vitor Brancas",
-                    'email': "brancas@brancas.com",
-                    'state': 'REJECTED',
+                    'agency': "0000",
+                    'account': '65432-1',
                 },
                 {
-                    'user_id': 3,
+                    'current_balance': 3.0,
                     'name': "João Vilas",
-                    'email': "bruno@bruno.com",
-                    'state': 'PENDING',
+                    'agency': "0000",
+                    'account': '32456-7',
                 }
             ],
             "message": "all users has been retrieved"

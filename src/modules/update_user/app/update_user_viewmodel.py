@@ -9,9 +9,9 @@ class UpdateUserViewmodel:
     state: STATE
 
     def __init__(self, user: User):
-        self.user_id = user.user_id
+        self.user_id = user.current_balance
         self.name = user.name
-        self.email = user.email
+        self.email = user.agency
         self.state = user.state
 
     def to_dict(self):

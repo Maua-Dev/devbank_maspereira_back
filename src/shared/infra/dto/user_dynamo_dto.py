@@ -6,15 +6,15 @@ from src.shared.domain.enums.state_enum import STATE
 
 class UserDynamoDTO:
     name: str
-    email: str
-    state: STATE
-    user_id: int
+    agency: str
+    account: str
+    current_balance: float
 
-    def __init__(self, name: str, email: str, state: STATE, user_id: int):
+    def __init__(self, name: str, agency: str, account: str, current_balance: float):
         self.name = name
-        self.email = email
-        self.user_id = user_id
-        self.state = state
+        self.agency = agency
+        self.current_balance = current_balance
+        self.account = account
 
     @staticmethod
     def from_entity(user: User) -> "UserDynamoDTO":
@@ -23,9 +23,9 @@ class UserDynamoDTO:
         """
         return UserDynamoDTO(
             name=user.name,
-            email=user.email,
-            user_id=user.user_id,
-            state=user.state
+            agency=user.agency,
+            current_balance=user.current_balance,
+            account=user.account
         )
 
     def to_dynamo(self) -> dict:
@@ -35,9 +35,9 @@ class UserDynamoDTO:
         return {
             "entity": "user",
             "name": self.name,
-            "email": self.email,
-            "user_id": Decimal(self.user_id),
-            "state": self.state.value
+            "agency": self.agency,
+            "current_balance": self.current_balance,
+            "account": self.account
         }
 
     @staticmethod
@@ -48,9 +48,9 @@ class UserDynamoDTO:
         """
         return UserDynamoDTO(
             name=user_data["name"],
-            email=user_data["email"],
-            user_id=int(user_data["user_id"]),
-            state=STATE(user_data["state"])
+            agency=user_data["agency"],
+            current_balance=float(user_data["current_balance"]),
+            account=user_data["account"]
         )
 
     def to_entity(self) -> User:
@@ -59,13 +59,13 @@ class UserDynamoDTO:
         """
         return User(
             name=self.name,
-            email=self.email,
-            user_id=self.user_id,
-            state=self.state
+            agency=self.agency,
+            current_balance=self.current_balance,
+            account=self.account
         )
 
     def __repr__(self):
-        return f"UserDynamoDto(name={self.name}, email={self.email}, user_id={self.user_id}, state={self.state})"
+        return f"UserDynamoDto(name={self.name}, agency={self.agency}, current_balance={self.current_balance}, account={self.account})"
 
     def __eq__(self, other):
         return self.__dict__ == other.__dict__

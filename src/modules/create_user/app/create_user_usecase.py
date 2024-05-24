@@ -15,12 +15,12 @@ class CreateUserUsecase:
         if not User.validate_name(name):
             raise EntityError("name")
 
-        if not User.validate_email(email):
+        if not User.validate_agency(email):
             raise EntityError("email")
 
         user = User(
             name=name,
-            email=email,
+            agency=email,
             state=STATE.PENDING
         )
 

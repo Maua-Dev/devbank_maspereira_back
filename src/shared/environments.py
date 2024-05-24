@@ -1,4 +1,3 @@
-import enum
 from enum import Enum
 import os
 from src.shared.domain.observability.observability_interface import IObservability

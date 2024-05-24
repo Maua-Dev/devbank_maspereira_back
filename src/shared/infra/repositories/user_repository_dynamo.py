@@ -47,11 +47,11 @@ class UserRepositoryDynamo(IUserRepository):
     def create_user(self, new_user: User) -> User:
         print(f"repo entered.\n Repo:{self}")
         print(self.dynamo.dynamo_table.__dict__)
-        new_user.user_id = self.get_user_counter()
-        print(f"nre user id: {new_user.user_id}")
+        new_user.current_balance = self.get_user_counter()
+        print(f"nre user id: {new_user.current_balance}")
         user_dto = UserDynamoDTO.from_entity(user=new_user)
-        resp = self.dynamo.put_item(partition_key=self.partition_key_format(new_user.user_id),
-                                    sort_key=self.sort_key_format(user_id=new_user.user_id), item=user_dto.to_dynamo(),
+        resp = self.dynamo.put_item(partition_key=self.partition_key_format(new_user.current_balance),
+                                    sort_key=self.sort_key_format(user_id=new_user.current_balance), item=user_dto.to_dynamo(),
                                     is_decimal=True)
         return new_user
 

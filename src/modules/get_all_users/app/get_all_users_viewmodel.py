@@ -5,17 +5,17 @@ from src.shared.domain.entities.user import User
 
 class UserViewmodel:
     def __init__(self, user: User):
-        self.state = user.state
-        self.email = user.email
+        self.account = user.account
+        self.agency = user.agency
         self.name = user.name
-        self.user_id = user.user_id
+        self.current_balance = user.current_balance
 
     def to_dict(self):
         return {
-            'user_id': self.user_id,
+            'current_balance': self.current_balance,
             'name': self.name,
-            'email': self.email,
-            'state': self.state.value
+            'agency': self.agency,
+            'account': self.account
         }
 
 

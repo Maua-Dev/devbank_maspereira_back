@@ -1,36 +1,29 @@
-# clean_mss_template 🌡🍽
+# Clean Arch template 🌡🍽
 
-Template for microservices repositories based in Clean Arch
+Template para repositórios de microsserviços baseado em Clean Architecture
 
-## The Project 📽
+## O Projeto 📽
 
-### Introduction and Objectives ⁉
+### Introdução e Objetivos ⁉
 
-The main objective is to provide a template for repositories that can be used as a starting point for new projects. This
-architecture is based on the Clean Architecture, and it was based in many other projects and books, articles that were
-mixed by the students of Mauá Institute of Technology, from the academic group Dev. Community Mauá.
+O principal objetivo é fornecer um template para repositórios que possa ser utilizado como ponto de partida para novos projetos. Esta arquitetura é baseada na Clean Architecture e foi fundamentada em vários outros projetos, livros e artigos que foram compilados pelos estudantes do Instituto Mauá de Tecnologia, do grupo acadêmico Dev. Community Mauá.
 
-### Reasons 1️⃣3️⃣
+### Motivos 1️⃣3️⃣
 
-The project aims to help developers to start new projects with a good architecture, and with a good structure, so that anybody can create good applications.
+O projeto visa ajudar desenvolvedores a iniciarem novos projetos com uma boa arquitetura e com uma boa estrutura, de forma que qualquer pessoa possa criar boas aplicações.
 
 ### Clean Architecture 🧼🏰
 
-The purpose of the project is to learn and create a Clean Architecture for microservices stateless with AWS Lambda which is a way of structuring
-the code in layers, each of which has a
-specific responsibility. This architecture is based on the principles of SOLID and books like "Clean Architecture: A
-Craftsman's Guide to Software Structure and Design" by Robert C. Martin.
+O propósito do projeto é aprender e criar uma Clean Architecture para microsserviços sem estado com AWS Lambda, que é uma forma de estruturar o código em camadas, cada uma com uma responsabilidade específica. Esta arquitetura é baseada nos princípios SOLID e em livros como "Clean Architecture: A Craftsman's Guide to Software Structure and Design" de Robert C. Martin.
 
-We also tried to explain for new programmers in the mos intuitive way and you can see the explanation here: [Clean Architecture Figma](https://www.figma.com/file/CmfQcH2xbZyIszPX0iOxPp/Clean-Arch---HackaBeckas?node-id=0%3A1&t=B38vNfX3VSv6qtU7-1)
+Também tentamos explicar para novos programadores da maneira mais intuitiva possível e você pode ver a explicação aqui: [Clean Architecture Figma](https://www.figma.com/file/CmfQcH2xbZyIszPX0iOxPp/Clean-Arch---HackaBeckas?node-id=0%3A1&t=B38vNfX3VSv6qtU7-1)
 
+### Estrutura de Pastas 🎄🌴🌲🌳
 
-### Folder Structure 🎄🌴🌲🌳
-
-Our folder structure was developed specially for our projects. 
+Nossa estrutura de pastas foi desenvolvida especialmente para os nossos projetos.
 
 
 ```bash
-.
 ├── iac
 ├── src
 │   ├── modules
@@ -75,111 +68,68 @@ Our folder structure was developed specially for our projects.
 ```
 
 
-## Name Format 📛
-### Files and Directories 📁
-
-- Files have the same name as the classes
-- snake_case 🐍 (ex: `./app/create_user_controller.py`)
-
-### Classes 🕴
-- #### Pattern 📟
-
-    - CamelCase 🐫🐪
-
-- #### Types 🧭
-
-    - **Interface** starts with "I" --> `IUserRepository`, `ISelfieRepository` 😀
-    - **Repository** have the same name as interface, without the "I" and the type in final (ex: `UserRepositoryMock`, `SelfieRepositoryDynamo`) 🥬
-    - **Controller** ends with "Controller" --> `CreateUserController`, `GetSelfieController` 🎮
-    - **Usecase** ends with "Usecase" --> `CreateUserUsecase`, `GetSelfieUsecase` 🏠
-    - **Viewmodel** ends with "Viewmodel" --> `CreateUserViewmodel`, `GetSelfieViewmodel` 👀
-    - **Presenter** ends with "Presenter" --> `CreateUserPresenter`, `GetSelfiePresenter`🎁
-
-### Methods 👨‍🏫
-
-- snake_case 🐍
-- Try associate with a verb (ex: `create_user`, `get_user`, `update_selfie`)
-
-### Variables 🅰
-
-- snake_case 🐍
-- Avoid verbs
-
-### Enums
-
-- SNAKE_CASE 🐍
-- File name ends with "ENUM" (ex: "STATE_ENUM")
-
-### Tests 📄
-
-- snake_case 🐍
-- "test" follow by class name (ex: `test_cadastrar_usuario_valido`, `test_cadastrar_usuario_sem_email`)
-    - The files must start with "test" to pytest recognition
-
-### Commit 💢
-
-- Start with verb
-- Ends with emoji 😎
-
-
-## Architecture Diagram 🏗
+## Diagrama da Arquitetura do Software 🏗
 ![img.png](docs/architecture_diagram.png)
 
 
 
 
-## Installation 👩‍💻
+## Instalação 👩‍💻
 
-Clone the repository using template
+Clone o repositório usando o template
 
-### Create virtual ambient in python (only first time)
+### Crie um ambiente virtual python (apenas na primeira vez)
 
 ###### Windows
 
     python -m venv venv
 
-###### Linux
-
-    virtualenv -p python3.9 venv
-
-### Activate the venv
+### Ative o ambiente virtual python
 
 ###### Windows:
 
     venv\Scripts\activate
 
-###### Linux:
-
-    source venv/bin/activate
-
-### Install the requirements
+### Instale as dependências
 
     pip install -r requirements-dev.txt
+    pip install -r requirements.txt
 
-### Run the tests
+### Rode os testes
 
     pytest
 
-### To run local set .env file
+### Para rodar localmente configure o arquivo .env
 
-    STAGE = TEST
+    STAGE=TEST
 
+# Colaboradores 🤝
 
-## Contributors 💰🤝💰
-
-- Bruno Vilardi - [Brvilardi](https://github.com/Brvilardi) 👷‍♂️
-- Hector Guerrini - [hectorguerrini](https://github.com/hectorguerrini) 🧙‍♂️
-- João Branco - [JoaoVitorBranco](https://github.com/JoaoVitorBranco) 😎
-- Vitor Soller - [VgsStudio](https://github.com/VgsStudio) ☀
-- Lucas Duez - [Lucasdvs10](https://github.com/Lucasdvs10) 🤡
-- Rodrigo Morales - [RodrigoM2004](https://github.com/RodrigoM2004) 🚗
-- Lucas Milani - [LucasKiller](https://github.com/LucasKiller) 🔪
-
-## Special Thanks 🙏
-
-- [Dev. Community Mauá](https://www.instagram.com/devcommunitymaua/)
-- [Clean Architecture: A Craftsman's Guide to Software Structure and Design](https://www.amazon.com.br/Clean-Architecture-Craftsmans-Software-Structure/dp/0134494164)
-- [Institute Mauá of Technology](https://www.maua.br/)
-
-
-
+<table>
+  <tr>
+    <td align="center">
+      <a href="#">
+        <img src="https://avatars.githubusercontent.com/u/78627928?v=4" width="100px;" alt="era uma foto daora"/><br>
+        <sub>
+          <p><b><i>Alessandro Lima:</i></b> <a href="https://github.com/alexZ7000"><i>alexZ7000</i></a>🏆</p>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="#">
+        <img src="https://avatars.githubusercontent.com/u/162473687?v=4" width="100px;" alt="era uma foto daora"/><br>
+        <sub>
+          <p><b><i>Nicole Mascaretti:</i></b> <a href="https://github.com/NicoleMascaretti"><i>NicoleMascaretti</i></a>🏆</p>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="#">
+        <img src="https://avatars.githubusercontent.com/u/87771775?v=4" width="100px;" alt="era uma foto daora"/><br>
+        <sub>
+          <p><b><i>Pedro Wilian:</i></b> <a href="https://github.com/pedrowilian"><i>pedrowilian</i></a>🏆</p>
+        </sub>
+      </a>
+    </td>
+  </tr>
+</table>
