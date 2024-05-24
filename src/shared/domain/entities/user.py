@@ -35,7 +35,8 @@ class User(abc.ABC):
             return False
         elif len(name) < 2:
             return False
-        return True
+        regex = re.compile(r"^[a-zA-ZÀ-ÿ\s]+$")
+        return bool(re.fullmatch(regex, name))
 
     @staticmethod
     def validate_agency(agency: str) -> bool:
@@ -45,7 +46,8 @@ class User(abc.ABC):
             return False
         elif len(agency) != 4:
             return False
-        return True
+        regex = re.compile(r"^\d{4}$")  # função que verifica se o texto é composto somente de números
+        return bool(re.fullmatch(regex, agency))
 
     @staticmethod
     def validate_account(account: str) -> bool:
@@ -54,7 +56,7 @@ class User(abc.ABC):
         elif type(account) is not str:
             return False
         elif len(account) != 7:  # account tem que ser do tipo xxxxx-x
-            return True
+            return False
         regex = re.compile(r"^\d{5}-\d$")
         return bool(re.fullmatch(regex, account))
 
@@ -62,7 +64,11 @@ class User(abc.ABC):
     def validate_current_balance(current_balance: float) -> bool:
         if current_balance is None:
             return False
-        elif type(current_balance) is not float:
+        try:
+            current_balance = float(current_balance)
+        except (ValueError, TypeError):
+            return False
+        if type(current_balance) is not float:
             return False
         elif current_balance < 0.0:
             return False
