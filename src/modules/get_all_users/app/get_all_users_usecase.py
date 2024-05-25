@@ -1,6 +1,6 @@
 from src.shared.domain.entities.user import User
 from typing import List
-from src.shared.domain.repositories.user_repository_interface import IUserRepository
+from src.shared.domain.repositories.user_repository.user_repository_interface import IUserRepository
 
 
 class GetAllUsersUsecase:

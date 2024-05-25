@@ -2,8 +2,8 @@ from decimal import Decimal
 
 import boto3
 import dotenv
-from src.shared.infra.repositories.user_repository_dynamo import UserRepositoryDynamo
-from src.shared.infra.repositories.user_repository_mock import UserRepositoryMock
+from src.shared.infra.repositories.user_repo.user_repository_dynamo import UserRepositoryDynamo
+from src.shared.infra.repositories.user_repo.user_repository_mock import UserRepositoryMock
 from src.shared.environments import Environments
 
 
@@ -83,6 +83,7 @@ def load_mock_to_local_dynamo():
 
     print(f"{count} users loaded to dynamo!")
 
+
 def load_mock_to_real_dynamo():
     mock_repo = UserRepositoryMock()
     dynamo_repo = UserRepositoryDynamo()
@@ -109,7 +110,8 @@ def load_mock_to_real_dynamo():
         count += 1
 
     print(f"{count} users loaded to dynamo!")
-    
+
+
 if __name__ == '__main__':
     dotenv.load_dotenv()
     load_mock_to_local_dynamo()

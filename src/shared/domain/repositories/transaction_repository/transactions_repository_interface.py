@@ -2,6 +2,7 @@ from abc import ABC, abstractmethod
 from typing import List, Dict
 
 from ...entities.transaction import Transaction
+from ...entities.user import User
 
 
 class ITransactionsRepository(ABC):
@@ -14,7 +15,7 @@ class ITransactionsRepository(ABC):
         pass
 
     @abstractmethod
-    def create_transaction(self, transaction: Transaction = None) -> Transaction:
+    def post_transaction(self, transaction: Transaction = None) -> Transaction:
         """
         Create transaction in the database
         """

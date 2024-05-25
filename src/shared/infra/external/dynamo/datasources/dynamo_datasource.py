@@ -95,9 +95,9 @@ class DynamoDatasource:
 
         data_key_value_pairs = list(update_dict.items())
 
-        update_expression = "SET " + ", ".join([f"#attr{i} = :val{i}" for i in range(len(data_key_value_pairs))]) # SET attribute1=:value1, attribute2=:value2
-        expression_attribute_names = {f"#attr{i}": data_key_value_pairs[i][0] for i in range(len(data_key_value_pairs))} # {"_attribute1": "attribute1", ":_attribute2": "attribute2"}
-        expression_value_names = {f":val{i}": data_key_value_pairs[i][1] for i in range(len(data_key_value_pairs))} # {":value1": "value1", ":value2": "value2"}
+        update_expression = "SET " + ", ".join([f"#attr{i} = :val{i}" for i in range(len(data_key_value_pairs))])  # SET attribute1=:value1, attribute2=:value2
+        expression_attribute_names = {f"#attr{i}": data_key_value_pairs[i][0] for i in range(len(data_key_value_pairs))}  # {"_attribute1": "attribute1", ":_attribute2": "attribute2"}
+        expression_value_names = {f":val{i}": data_key_value_pairs[i][1] for i in range(len(data_key_value_pairs))}  # {":value1": "value1", ":value2": "value2"}
 
         resp = self.dynamo_table.update_item(
             Key={

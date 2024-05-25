@@ -12,22 +12,21 @@ class TransactionsRepositoryMock(ITransactionsRepository):
 
     def __init__(self):
         self.history = History()
-
-    def create_transaction(self, transaction: Transaction = None) -> Dict[str, float]:
-        if transaction.transaction_type == TransactionEnum.DEPOSIT:
-            transaction.current_balance = transaction.current_balance + transaction.value
-        elif transaction.transaction_type == TransactionEnum.WITHDRAW:
-            transaction.current_balance = transaction.current_balance - transaction.value
-
-        transaction = Transaction(
-            transaction_type=transaction.transaction_type,
-            value=transaction.value,
-            current_balance=transaction.current_balance,
-            timestamp=transaction.timestamp
+        self.transaction = Transaction(
+            transaction_type=TransactionEnum.DEPOSIT.value,
+            current_balance=1000.0,
+            timestamp=32131,
+            value=200
         )
+
+    def post_transaction(self, transaction: Transaction = None) -> Dict[str, float]:
+        if transaction.transaction_type == TransactionEnum.DEPOSIT:
+            self.transaction.current_balance = transaction.current_balance + transaction.value
+        elif transaction.transaction_type == TransactionEnum.WITHDRAW:
+            self.transaction.current_balance = transaction.current_balance - transaction.value
 
         self.history.all_transactions.append(transaction)
         return {"current_balance": transaction.current_balance, "timestamp": transaction.timestamp}
 
-    def get_transactions_history(self):
+    def get_transactions_history(self) -> History:
         return self.history

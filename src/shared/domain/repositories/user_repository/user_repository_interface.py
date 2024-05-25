@@ -1,13 +1,12 @@
 from abc import ABC, abstractmethod
 from typing import List
 
-from ...entities.user import User
+from src.shared.domain.entities.user import User
 
 
 class IUserRepository(ABC):
-
     @abstractmethod
-    def get_user(self) -> List[User]:
+    def get_all_user(self) -> List[User]:
         """
         Returns user in the database
         """

@@ -2,7 +2,8 @@ from enum import Enum
 import os
 from src.shared.domain.observability.observability_interface import IObservability
 
-from src.shared.domain.repositories.user_repository_interface import IUserRepository
+from src.shared.domain.repositories.user_repository.user_repository_interface import IUserRepository
+from src.shared.domain.repositories.transaction_repository.transactions_repository_interface import ITransactionsRepository
 
 
 class STAGE(Enum):
@@ -28,7 +29,7 @@ class Environments:
     dynamo_partition_key: str
     dynamo_sort_key: str
     cloud_frontget_user_presenter_distribution_domain: str
-    mss_name: str 
+    mss_name: str
 
     def _configure_local(self):
         from dotenv import load_dotenv
@@ -41,7 +42,7 @@ class Environments:
 
         self.stage = STAGE[os.environ.get("STAGE")]
         self.mss_name = os.environ.get("MSS_NAME")
-        
+
         if self.stage == STAGE.TEST:
             self.s3_bucket_name = "bucket-test"
             self.region = "sa-east-1"
@@ -63,11 +64,22 @@ class Environments:
     @staticmethod
     def get_user_repo() -> IUserRepository:
         if Environments.get_envs().stage == STAGE.TEST:
-            from src.shared.infra.repositories.user_repository_mock import UserRepositoryMock
+            from src.shared.infra.repositories.user_repo.user_repository_mock import UserRepositoryMock
             return UserRepositoryMock
         elif Environments.get_envs().stage in [STAGE.DEV, STAGE.HOMOLOG, STAGE.PROD]:
-            from src.shared.infra.repositories.user_repository_dynamo import UserRepositoryDynamo
+            from src.shared.infra.repositories.user_repo.user_repository_dynamo import UserRepositoryDynamo
             return UserRepositoryDynamo
+        else:
+            raise Exception("No repository found for this stage")
+
+    @staticmethod
+    def get_history_repo() -> ITransactionsRepository:
+        if Environments.get_envs().stage == STAGE.TEST:
+            from src.shared.infra.repositories.transaction_repo.transaction_repository_mock import TransactionRepositoryMock
+            return TransactionRepositoryMock
+        elif Environments.get_envs().stage in [STAGE.DEV, STAGE.HOMOLOG, STAGE.PROD]:
+            from src.shared.infra.repositories.transaction_repo.transaction_repository_dynamo import TransactionRepositoryDynamo
+            return TransactionRepositoryDynamo
         else:
             raise Exception("No repository found for this stage")
 
@@ -81,6 +93,7 @@ class Environments:
             return ObservabilityAWS
         else:
             raise Exception("No observability class found for this stage")
+
     @staticmethod
     def get_envs() -> "Environments":
         """
@@ -94,4 +107,3 @@ class Environments:
 
     def __repr__(self):
         return self.__dict__
-

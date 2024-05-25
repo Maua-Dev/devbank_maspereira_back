@@ -35,6 +35,10 @@ class Test_User:
         with pytest.raises(EntityError):
             User(name="VITOR", agency="00000", current_balance=1.0, account="12345-6")
 
+    def test_user_current_balance_is_none(self):
+        with pytest.raises(EntityError):
+            User(name="VITOR", agency="00000", current_balance=None, account="12345-6")
+
     def test_user_agency_has_wrong_chars(self):
         with pytest.raises(EntityError):
             User(name="VITOR", agency="000a", current_balance=1.0, account="12345-6")
