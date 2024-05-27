@@ -46,7 +46,7 @@ class TransactionDynamoDTO:
         return TransactionDynamoDTO(
             transaction_type=transaction_data["transaction_type"],
             value=transaction_data["value"],
-            current_balance=float(transaction_data["current_balance"]),
+            current_balance=transaction_data["current_balance"],
             timestamp=transaction_data["timestamp"]
         )
 

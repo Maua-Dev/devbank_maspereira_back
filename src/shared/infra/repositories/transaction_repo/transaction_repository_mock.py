@@ -1,7 +1,6 @@
 from typing import List, Dict
 
 from src.shared.domain.entities.transaction import Transaction
-from src.shared.domain.entities.user import User
 from src.shared.domain.repositories.transaction_repository.transactions_repository_interface import \
     ITransactionsRepository
 

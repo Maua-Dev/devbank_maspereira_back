@@ -10,4 +10,4 @@ class PostTransactionUsecase:
     def __call__(self) -> list[Transaction]:
         all_history_list = self.repo.get_transactions_history()
 
-        return all_history_list
+        return all_history_list["all_transactions"]

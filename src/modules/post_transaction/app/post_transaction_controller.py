@@ -1,6 +1,6 @@
 from src.shared.helpers.external_interfaces.external_interface import IRequest
 from .post_transaction_usecase import PostTransactionUsecase
-from .post_transaction_viewmodel import TransactionViewmodel
+from .post_transaction_viewmodel import PostTransactionViewmodel
 from src.shared.domain.entities.transaction import Transaction
 from src.shared.helpers.errors.controller_errors import MissingParameters, WrongTypeParameter
 from src.shared.helpers.errors.domain_errors import EntityError
@@ -16,7 +16,7 @@ class PostTransactionController:
         try:
             all_transactions_list: list[Transaction] = self.usecase()
 
-            viewmodel = TransactionViewmodel(all_transactions_list)
+            viewmodel = PostTransactionViewmodel(all_transactions_list[0])
 
             return OK(viewmodel.to_dict())
 

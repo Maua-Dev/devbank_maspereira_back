@@ -14,5 +14,5 @@ class Test_UserRepositoryMock:
 
     def test_post_transaction(self):
         repo = TransactionRepositoryMock()
-        users = repo.post_transaction()
-        assert len(users) == 3
+        transactions = repo.post_transaction()
+        assert transactions.current_balance != 1000

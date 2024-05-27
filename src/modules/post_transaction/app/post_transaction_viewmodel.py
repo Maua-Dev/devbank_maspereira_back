@@ -3,7 +3,7 @@ from typing import List
 from src.shared.domain.entities.transaction import Transaction
 
 
-class TransactionViewmodel:
+class PostTransactionViewmodel:
     def __init__(self, transaction: Transaction):
         self.transaction_type = transaction.transaction_type
         self.value = transaction.value
@@ -13,15 +13,13 @@ class TransactionViewmodel:
     def to_dict(self):
         return {
             'current_balance': self.current_balance,
-            'transaction_type': self.transaction_type,
-            'value': self.value,
             'timestamp': self.timestamp
         }
 
 
-class PostTransactionViewmodel:
+class HistoryTransactionViewmodel:
     def __init__(self, transactions_list: List[Transaction]):
-        self.transactions_viewmodel_list = [TransactionViewmodel(transaction) for transaction in transactions_list]
+        self.transactions_viewmodel_list = [PostTransactionViewmodel(transaction) for transaction in transactions_list]
 
     def to_dict(self):
         return {
